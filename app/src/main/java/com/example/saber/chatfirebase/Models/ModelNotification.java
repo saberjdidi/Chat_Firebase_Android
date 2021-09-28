@@ -3,6 +3,7 @@ package com.example.saber.chatfirebase.Models;
 public class ModelNotification {
     String pId, timestamp, pUid, notification, sUid, sName, sEmail, sImage;
 
+    //empty constructor is required for firebase
     public ModelNotification() {
     }
 

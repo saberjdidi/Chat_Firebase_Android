@@ -160,6 +160,8 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
                              postsRef.child(postIde).child("pLikes").setValue(""+(pLikes+1));
                              likesRef.child(postIde).child(myUid).setValue("Liked");
                              mProcessLike = false;
+
+                             addToHisNotifications(""+uid, ""+pId, "Liked your post");
                          }
                      }
                     }
@@ -397,9 +399,21 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
         hashMap.put("pUid", hisUid);
         hashMap.put("notification", notification);
         hashMap.put("sUid", myUid);
-        hashMap.put("sName", pId);
-        hashMap.put("sEmail", pId);
-        hashMap.put("sImage", pId);
+
+        DatabaseReference ref = FirebaseDatabase.getInstance().getReference("Users");
+        ref.child(hisUid).child("Notifications").child(timestamp).setValue(hashMap)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+
+                    }
+                })
+        .addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+
+            }
+        });
     }
 
     @Override
