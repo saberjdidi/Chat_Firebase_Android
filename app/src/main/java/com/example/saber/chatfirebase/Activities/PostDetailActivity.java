@@ -169,6 +169,16 @@ public class PostDetailActivity extends AppCompatActivity {
                 }
             }
         });
+
+        //click like count to start PostLikedByActivity
+        pLikesTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(PostDetailActivity.this, PostLikedByActivity.class);
+                intent.putExtra("postId", postId);
+                startActivity(intent);
+            }
+        });
     }
 
     private void loadComments() {

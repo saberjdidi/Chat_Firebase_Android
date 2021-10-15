@@ -26,6 +26,7 @@ import android.widget.Toast;
 
 import com.example.saber.chatfirebase.Activities.AddPostActivity;
 import com.example.saber.chatfirebase.Activities.PostDetailActivity;
+import com.example.saber.chatfirebase.Activities.PostLikedByActivity;
 import com.example.saber.chatfirebase.Activities.ThereProfileActivity;
 import com.example.saber.chatfirebase.Models.Post;
 import com.example.saber.chatfirebase.R;
@@ -207,6 +208,16 @@ public class AdapterPosts extends RecyclerView.Adapter<AdapterPosts.MyHolder> {
                 //click to go to ThereProfileActivity with uid
                 Intent intent = new Intent(context, ThereProfileActivity.class);
                 intent.putExtra("uid", uid);
+                context.startActivity(intent);
+            }
+        });
+
+        //click like count to start PostLikedByActivity
+        myHolder.pLikesTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, PostLikedByActivity.class);
+                intent.putExtra("postId", pId);
                 context.startActivity(intent);
             }
         });
